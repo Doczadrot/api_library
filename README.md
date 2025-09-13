@@ -225,7 +225,7 @@ curl -X POST http://localhost:8000/library/api/authors/ \
 
 ## 👨‍💻 Автор
 
-**Иван** - [@your-github](https://github.com/Doczadrot)
+**Иван** - (https://github.com/Doczadrot)
 
 ## 📞 Поддержка
 
