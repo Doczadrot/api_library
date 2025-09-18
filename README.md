@@ -62,7 +62,7 @@ DRF_Library/
 
 ### 1. Клонирование репозитория
 ```bash
-git clone https://github.com/your-username/DRF_Library.git
+git clone https://github.com/Doczadrot/DRF_Library.git
 cd DRF_Library
 ```
 
