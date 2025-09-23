@@ -18,9 +18,9 @@ class LibraryApiTests(APITestCase):
         self.author1 = Author.objects.create(name="Пушкин")
         self.author2 = Author.objects.create(name="Лермонтов")
 
-        self.book1 = Book.objects.create(title="Книга А", isbn="A-001", subject="Поэзия", page_counts=120)
+        self.book1 = Book.objects.create(title="Книга А", isbn="978-5-17-111111-1", subject="Поэзия", page_counts=120)
         self.book1.author.add(self.author1)
-        self.book2 = Book.objects.create(title="Книга Б", isbn="B-002", subject="Роман", page_counts=300)
+        self.book2 = Book.objects.create(title="Книга Б", isbn="978-5-17-222222-2", subject="Роман", page_counts=300)
         self.book2.author.add(self.author2)
 
         self.item1 = BookItem.objects.create(book=self.book1, barcode="BC-1", status=BookItem.STATUS_AVAILABLE, publication_date=date(2010, 1, 1))
@@ -55,7 +55,7 @@ class LibraryApiTests(APITestCase):
         self.client.force_authenticate(user=self.admin)
         payload = {
             "title": "Новая книга",
-            "isbn": "NEW-123",
+            "isbn": "978-5-17-123456-7",
             "author": [self.author1.id],
             "subject": "Поэзия",
             "page_counts": 200,

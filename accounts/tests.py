@@ -16,12 +16,12 @@ class AuthTests(APITestCase):
             'password': 'strong_password123',
             'password2': 'strong_password123'
         }
-        # Отправляем POST-запрос на эндпоинт регистрации
+        # Отправляем Пост-запрос на эндпоинт регистрации
         response = self.client.post("/api/auth/registration/", data, format='json')
 
-        # Проверяем, что ответ имеет статус 201 Created
+        
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        # Проверяем, что пользователь был создан в базе данных
+        
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(User.objects.get().username, 'testuser')
 
@@ -33,11 +33,11 @@ class AuthTests(APITestCase):
             'username': 'testuser2',
             'email': 'test2@example.com',
             'password': 'password_1',
-            'password2': 'password_2'  # Несовпадающие пароли
+            'password2': 'password_2'  
         }
         response = self.client.post("/api/auth/registration/", data, format='json')
 
-        # Ожидаем статус 400 Bad Request
+        # Ожидаем статус 400
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         # Проверяем, что пользователь не был создан
         self.assertEqual(User.objects.count(), 0)
@@ -53,15 +53,15 @@ class AuthTests(APITestCase):
             password='strong_password123'
         )
 
-        # Данные для получения токена (имя пользователя и пароль)
+        # Данные для получения токена
         data = {
             'username': 'testuser',
             'password': 'strong_password123'
         }
-        # Отправляем POST-запрос на эндпоинт получения токена
+        # Отправляем ПОСТ-запрос на эндпоинт получения токена
         response = self.client.post(reverse('token_obtain_pair'), data, format='json')
 
-        # Проверяем, что ответ имеет статус 200 OK
+        # Проверяем, что ответ имеет статус 200
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # Проверяем, что в ответе есть токены access и refresh
         self.assertIn('access', response.data)
